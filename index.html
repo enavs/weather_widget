@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/main.css">
+    <source src="./static/js/main.js" type="">
+  </head>
+
+  
+  <header class="header-background">
+    <div class="row search-area">    
+        <div class="col-md-7 offset-md-5">
+            <form class="form-inline">
+                <input class="form-control type-in-stuff" id="city_name" type="text" placeholder="Type in a City">
+                <button class="btn btn-outline-primary button-stuff" id="city_submission" type="submit">Search</button>
+            </form>
+        </div>    
+    </div>
+  </header> 
+
+  <main>
+
+    <div class="container">
+        <div class="row">
+                <div class="col-md-4 offset-md-4 weather-box">
+                    <h6 id="hello"><center>Hello, here is the current weather data</center></h6>
+
+                    <li id='current_temp' class="list-group-item"></li>
+                    <li id='hi_temp' class="list-group-item"></li>
+                    <li id='low_temp' class="list-group-item"></li>
+                    <li id='feels_like' class="list-group-item"></li>
+                    <li id='humidity' class="list-group-item"></li>
+                </div>
+        </div>
+    </div>
+    
+    <script>
+        // var city_sub = document.querySelector('#city_name').value;
+        var city_sub = 'Chicago';
+        // console.log(city_sub)
+        var api_key = 'b5e21d8e54975d090069c0667cfd02d1';
+
+        var current_temp;
+        var hi_temp;
+        var low_temp;
+        var feels_like;
+        var humidity;
+        
+        // city_sub.addEventListener('click', function(e)
+        // {
+            // connect to the API
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city_sub}&units=metric&appid=${api_key}`)
+            .then(response => response.json())
+            .then(data => console.log(data));
+            console.log(data)
+
+            // what to do upon successful response
+            current_temp = data.main.temp.value;
+            hi_temp = data.main.temp_max.value;
+            low_temp = data.main.temp_min.value;
+            feels_like = data.main.feels_like.value;
+            humidity = data.main.humidity.value;
+
+        // })
+
+        var p = document.createElement('P');
+        p.setAttribute('id', 'current_temp');
+        p.innerText = `${current_temp}`;
+        document.querySelector('#current_temp').append(p);
+        
+        var p = document.createElement('P');
+        p.setAttribute('id', 'hi_temp');
+        p.innerText = `${hi_temp}`;
+        document.querySelector('#hi_temp').append(p);
+
+        var p = document.createElement('P');
+        p.setAttribute('id', 'low_temp');
+        p.innerText = `${low_temp}`;
+        document.querySelector('#low_temp').append(p);
+
+        var p = document.createElement('P');
+        p.setAttribute('id', 'feels_like');
+        p.innerText = `${feels_like}`;
+        document.querySelector('#feels_like').append(p);
+
+        var p = document.createElement('P');
+        p.setAttribute('id', 'humidity');
+        p.innerText = `${humidity}`;
+        document.querySelector('#humidity').append(p);
+    </script>
+
+
+  </main>
+
+  <footer>
+
+  </footer>
+
+
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
